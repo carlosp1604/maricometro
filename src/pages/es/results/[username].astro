@@ -1,0 +1,25 @@
+---
+import InputUsername from '../../../components/InputUsername'
+import PrideMeter from '../../../components/PrideMeter'
+import SiteIntro from '../../../components/SiteIntro'
+import ResultsLayout from '../../../layouts/ResultsLayout.astro'
+
+export const prerender = false
+
+const { username } = Astro.params
+
+const randomNumber = Math.floor(Math.random() * 101)
+
+const title = `${username} | Nivel de mariconada`
+const description = `${username} Ha obtenido un ${randomNumber}/100 en el Maricómetro`
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+---
+
+<ResultsLayout {title} {description}>
+  <main>
+    <SiteIntro lang={lang} />
+    <InputUsername lang={lang} client:load/>
+    <PrideMeter score={randomNumber} username={username ?? ''} lang={lang} client:load/>
+  </main>
+</ResultsLayout>

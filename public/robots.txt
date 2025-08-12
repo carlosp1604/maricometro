@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /es/
+Allow: /en/
+Disallow: /results/
+Disallow: /

@@ -21,7 +21,7 @@ export default tseslint.config(
   tseslint.configs.recommended,
   eslintPluginAstro.configs.recommended,
   {
-    files: ['**/*.{mjs,cjs,js,ts,astro}'],
+    files: ['**/*.{tsx,jsx,mjs,cjs,js,ts,astro}'],
     languageOptions: { ecmaVersion: 'latest', globals: globals.browser },
     plugins: {
       import: importPlugin,

@@ -1,0 +1,70 @@
+import { useState, type FormEvent } from 'react'
+
+type Props = { lang: 'es' | 'en' }
+
+const placeholderTitle = {
+  es: 'Escribe tu nombre',
+  en: 'Enter your name'
+}
+
+const buttonText = {
+  es: 'Calcular',
+  en: 'Calculate'
+}
+
+export default function InputUsername ({ lang }: Props) {
+  const [username, setUsername] = useState('')
+
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    const trimmed = username.trim()
+    if (trimmed) {
+      window.location.href = `/${lang}/results/${encodeURIComponent(trimmed)}`
+    }
+  }
+
+  return (
+    <div className="mx-5 tb:flex tb:justify-center">
+      <div className="relative group w-full max-w-md">
+        <div
+          aria-hidden
+          style={{
+            background: 'var(--gradient-rainbow-pastel)',
+            filter: 'blur(20px)',
+            transform: 'translateZ(0)'
+          }}
+          className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity
+          duration-300 group-hover:opacity-100"
+        />
+
+        <form
+          onSubmit={onSubmit}
+          className="relative flex justify-around w-full bg-white rounded-lg overflow-hidden shadow-md"
+          aria-label={placeholderTitle[lang]}
+        >
+          <input
+            type="text"
+            placeholder={placeholderTitle[lang]}
+            required
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+            aria-label={placeholderTitle[lang]}
+            className="w-full px-4 py-3 text-base md:text-lg bg-transparent placeholder:text-gray-400
+            outline-none"
+          />
+
+          <button
+            type="submit"
+            className="px-4 py-2 md:py-3 bg-brand-primary text-white
+            font-semibold text-sm md:text-base transition-transform
+            hover:bg-gradient-to-r hover:bg-brand-primary-dark hover:transition-colors
+            cursor-pointer"
+            aria-label={buttonText[lang]}
+          >
+            {buttonText[lang]}
+          </button>
+        </form>
+      </div>
+    </div>
+  )
+}

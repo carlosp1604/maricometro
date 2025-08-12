@@ -1,0 +1,34 @@
+---
+import '../styles/global.css'
+
+export const prerender = false
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+
+const { title, description } = Astro.props
+
+const siteUrl = import.meta.env.SITE_URL
+const siteImage = import.meta.env.SITE_IMAGE_URL
+
+const canonicalUrl = `https://${siteUrl}/${lang}/`
+---
+
+<html lang={lang}>
+  <head>
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <link rel="alternate" href={siteUrl + '/es/'} hreflang="es" />
+    <link rel="alternate" href={siteUrl + '/en/'} hreflang="en" />
+    <link rel="alternate" href={siteUrl} hreflang="x-default" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={siteImage} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body class="min-h-screen w-full container bg-body text-text my-10">
+    <slot />
+  </body>
+</html>

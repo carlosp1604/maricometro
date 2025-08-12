@@ -1,0 +1,41 @@
+---
+import '../styles/global.css'
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+
+const titles = {
+  es: 'Maricómetro: Medidor de mariconada',
+  en: 'Pride-o-meter: Queer meter',
+}
+const descriptions = {
+  // eslint-disable-next-line max-len
+  es: 'Bienvenido al maricómetro, el primer medidor de mariconada del mundo. Si has dudado de tu sexualidad alguna vez este es tu lugar. Escribe tu nombre y averigualo',
+  // eslint-disable-next-line max-len
+  en: 'Welcome to the Pride-o-meter, the world\'s first queer meter. If you\'ve ever doubted about your sexuality, this is the place for you. Enter your name and find out',
+}
+
+const siteUrl = import.meta.env.SITE_URL
+const siteImage = import.meta.env.SITE_IMAGE_URL
+
+const canonicalUrl = `https://${siteUrl}/${lang}/`
+---
+
+<html lang={lang}>
+  <head>
+    <title>{titles[lang]}</title>
+    <meta charset="UTF-8" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="description" content={descriptions[lang]} />
+    <link rel="alternate" href={siteUrl + '/es/'} hreflang="es" />
+    <link rel="alternate" href={siteUrl + '/en/'} hreflang="en" />
+    <link rel="alternate" href={siteUrl} hreflang="x-default" />
+    <meta property="og:title" content={titles[lang]} />
+    <meta property="og:description" content={descriptions[lang]} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={siteImage} />
+  </head>
+  <body class="min-h-screen w-full container bg-body text-text my-10">
+    <slot />
+  </body>
+</html>
