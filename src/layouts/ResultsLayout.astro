@@ -1,8 +1,6 @@
 ---
 import '../styles/global.css'
 
-export const prerender = false
-
 const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
 
 const { title, description } = Astro.props
@@ -10,7 +8,7 @@ const { title, description } = Astro.props
 const siteUrl = import.meta.env.SITE_URL
 const siteImage = import.meta.env.SITE_IMAGE_URL
 
-const canonicalUrl = `https://${siteUrl}/${lang}/`
+const canonicalUrl = `${siteUrl}/${lang}/`
 ---
 
 <html lang={lang}>
