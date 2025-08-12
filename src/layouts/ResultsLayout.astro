@@ -5,8 +5,8 @@ const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
 
 const { title, description } = Astro.props
 
-const siteUrl = import.meta.env.SITE_URL
-const siteImage = import.meta.env.SITE_IMAGE_URL
+const siteUrl = import.meta.env.PUBLIC_SITE_URL
+const siteImage = import.meta.env.PUBLIC_SITE_IMAGE_URL
 
 const canonicalUrl = `${siteUrl}/${lang}/`
 ---
