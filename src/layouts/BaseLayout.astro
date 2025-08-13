@@ -1,0 +1,24 @@
+---
+import '../styles/global.css'
+import HomeButton from '../components/HomeButton.astro'
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+
+const { title } = Astro.props
+---
+
+<html lang={lang}>
+  <head>
+    <title>{title}</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
+    <slot name="head"/>
+  </head>
+  <body class="min-h-screen w-full container bg-body text-text text-sm md:text-md lg:text-base">
+    <HomeButton lang={lang}/>
+    <slot />
+  </body>
+</html>

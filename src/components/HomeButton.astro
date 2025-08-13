@@ -1,0 +1,26 @@
+---
+import { House } from 'lucide-react'
+
+const currentPath = Astro.url.pathname
+
+const { lang } = Astro.props as { lang: 'es' | 'en' }
+
+const showButton = !['/es/', '/en/', '/'].includes(currentPath)
+
+const translations = {
+  es: 'Inicio',
+  en: 'Home',
+}
+---
+
+{showButton && (
+  <button
+    class="absolute top-4 left-4 flex gap-x-2 items-center bg-brand-primary-dark
+    text-white px-4 py-2 rounded-lg shadow-lg z-50
+    hover:cursor-pointer hover:scale-105 transition-transform font-semibold"
+    onclick="window.location.href='/'"
+  >
+    <House size="20"/>
+    {translations[lang]}
+  </button>
+)}

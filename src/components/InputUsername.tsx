@@ -39,7 +39,7 @@ export default function InputUsername ({ lang }: Props) {
 
         <form
           onSubmit={onSubmit}
-          className="relative flex justify-around w-full bg-white rounded-lg overflow-hidden shadow-md"
+          className="relative flex justify-around w-full bg-surface rounded-lg overflow-hidden shadow-md"
           aria-label={placeholderTitle[lang]}
         >
           <input
@@ -49,16 +49,14 @@ export default function InputUsername ({ lang }: Props) {
             value={username}
             onChange={e => setUsername(e.target.value)}
             aria-label={placeholderTitle[lang]}
-            className="w-full px-4 py-3 text-base md:text-lg bg-transparent placeholder:text-gray-400
+            className="w-full px-4 py-3 bg-transparent placeholder:text-secondary-text
             outline-none"
           />
 
           <button
             type="submit"
-            className="px-4 py-2 md:py-3 bg-brand-primary text-white
-            font-semibold text-sm md:text-base transition-transform
-            hover:bg-gradient-to-r hover:bg-brand-primary-dark hover:transition-colors
-            cursor-pointer"
+            className="px-4 py-2 md:py-3 bg-brand-primary-dark text-white transition-colors duration-300
+            font-semibold hover:bg-brand-primary cursor-pointer"
             aria-label={buttonText[lang]}
           >
             {buttonText[lang]}

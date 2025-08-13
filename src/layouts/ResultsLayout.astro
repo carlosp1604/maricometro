@@ -1,32 +1,32 @@
 ---
-import '../styles/global.css'
+import BaseLayout from './BaseLayout.astro'
 
 const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
-
-const { title, description } = Astro.props
+const { title, description, username } = Astro.props
 
 const siteUrl = import.meta.env.PUBLIC_SITE_URL
 const siteImage = import.meta.env.PUBLIC_SITE_IMAGE_URL
 
-const canonicalUrl = `${siteUrl}/${lang}/`
+const canonicalUrl = `${siteUrl}/${lang}/results/${username}`
+const alternateEn = `${siteUrl}/en/results/${username}`
+const alternateEs = `${siteUrl}/es/results/${username}`
+const xDefault = `${siteUrl}/results/${username}`
 ---
 
-<html lang={lang}>
-  <head>
-    <title>{title}</title>
-    <meta charset="UTF-8" />
+<BaseLayout title={title} >
+  <Fragment slot="head">
     <meta name="description" content={description} />
-    <link rel="alternate" href={siteUrl + '/es/'} hreflang="es" />
-    <link rel="alternate" href={siteUrl + '/en/'} hreflang="en" />
-    <link rel="alternate" href={siteUrl} hreflang="x-default" />
+    <link rel="alternate" href={alternateEs} hreflang="es" />
+    <link rel="alternate" href={alternateEn} hreflang="en" />
+    <link rel="alternate" href={xDefault} hreflang="x-default" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={siteImage} />
     <meta name="robots" content="noindex" />
-  </head>
-  <body class="min-h-screen w-full container bg-body text-text my-10">
+  </Fragment>
+  <main class="mt-20 mb-10">
     <slot />
-  </body>
-</html>
+  </main>
+</BaseLayout>

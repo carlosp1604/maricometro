@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css'
+import BaseLayout from './BaseLayout.astro'
 
 const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
 
@@ -18,24 +18,25 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL
 const siteImage = import.meta.env.PUBLIC_SITE_IMAGE_URL
 
 const canonicalUrl = `${siteUrl}/${lang}/`
+const alternateEn = `${siteUrl}/en/`
+const alternateEs = `${siteUrl}/es/`
+const xDefault = `${siteUrl}/`
 ---
 
-<html lang={lang}>
-  <head>
-    <title>{titles[lang]}</title>
-    <meta charset="UTF-8" />
+<BaseLayout title={titles[lang]}>
+  <Fragment slot="head">
     <link rel="canonical" href={canonicalUrl} />
     <meta name="description" content={descriptions[lang]} />
-    <link rel="alternate" href={siteUrl + '/es/'} hreflang="es" />
-    <link rel="alternate" href={siteUrl + '/en/'} hreflang="en" />
-    <link rel="alternate" href={siteUrl} hreflang="x-default" />
+    <link rel="alternate" href={alternateEs} hreflang="es" />
+    <link rel="alternate" href={alternateEn} hreflang="en" />
+    <link rel="alternate" href={xDefault} hreflang="x-default" />
     <meta property="og:title" content={titles[lang]} />
     <meta property="og:description" content={descriptions[lang]} />
     <meta property="og:url" content={canonicalUrl} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={siteImage} />
-  </head>
-  <body class="min-h-screen w-full container bg-body text-text my-10">
+  </Fragment>
+  <main class="mt-20 mb-10">
     <slot />
-  </body>
-</html>
+  </main>
+</BaseLayout>
