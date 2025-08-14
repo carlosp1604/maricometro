@@ -1,8 +1,0 @@
-name = "maricometro"
-compatibility_date = "2025-08-12"
-
-main = "./dist/_worker.js"
-
-[build]
-command = "npm run build"
-watch_dir = "./dist"

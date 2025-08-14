@@ -18,7 +18,7 @@ const { title } = Astro.props
     <slot name="head"/>
   </head>
   <body class="min-h-screen w-full container bg-body text-text text-sm md:text-md lg:text-base">
-    <HomeButton lang={lang}/>
+    <HomeButton lang={lang} client:load/>
     <slot />
   </body>
 </html>

@@ -14,6 +14,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [react()],
+  redirects: {
+    '/': '/en/'
+  },
   i18n: {
     locales: i18nConfig.locales,
     defaultLocale: i18nConfig.defaultLocale,
@@ -21,5 +24,6 @@ export default defineConfig({
       prefixDefaultLocale: true,
       redirectToDefaultLocale: true,
     }
-  }
+  },
+  trailingSlash: 'always',
 })

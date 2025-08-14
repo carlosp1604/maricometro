@@ -1,0 +1,24 @@
+---
+import BaseLayout from './BaseLayout.astro'
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+
+const titles = {
+  es: '404: Página No Encontrada',
+  en: '404: Page Not Found ',
+}
+const descriptions = {
+  es: 'La página solicitada no fue encontrada en el servidor',
+  en: 'The requested page was not found on the server',
+}
+---
+
+<BaseLayout title={titles[lang]}>
+  <Fragment slot="head">
+    <meta name="description" content={descriptions[lang]} />
+    <meta name="robots" content="noindex"/>
+  </Fragment>
+  <main class="mt-20 mb-10">
+    <slot />
+  </main>
+</BaseLayout>

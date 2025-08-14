@@ -1,0 +1,48 @@
+---
+import NotFoundLayout from '../layouts/NotFoundLayout.astro'
+
+const titles = {
+  es: '404: Página No Encontrada',
+  en: '404: Page Not Found ',
+}
+
+const descriptions = {
+  // eslint-disable-next-line max-len
+  es: 'Vaya, ¿A donde ibas?\n¡Solo bromeamos! La página que estás buscando no existe. Regresa a la página principal para que no te vuelvas a perder',
+  // eslint-disable-next-line max-len
+  en: 'Oops, Where were you going?\nJust kidding! Page you are looking for doesn\'t exits. Return to Home Page so you won\'t get lost again',
+}
+
+const altTitles = {
+  es: 'Unicornio arcoíris sosteniendo un cartel de error 404',
+  en: 'Rainbow unicorn holding an error 404 sign'
+}
+
+const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+---
+
+<NotFoundLayout>
+  <div class="overflow-hidden">
+    <img
+      src="/404.webp"
+      alt={altTitles[lang]}
+      class="max-h-[360px] h-auto md:max-h-[480px] w-auto mx-auto transition-all"
+    />
+    <h1
+      class="text-center tb:w-max text-3xl md:text-5xl font-extrabold text-transparent block mx-auto bg-clip-text mb-4
+      line-clamp-2 "
+      style={{
+        background: 'var(--gradient-rainbow-pastel)',
+        WebkitBackgroundClip: 'text',
+        color: 'transparent',
+        WebkitTextStroke: '0.5px rgba(0,0,0,0.7)',
+        textShadow: '0 1px 1px rgba(0,0,0,0.3)'
+      }}
+    >
+      {titles[lang]}
+    </h1>
+    <p class="text-center font-light max-w-xs w-full md:max-w-md mx-auto">
+      {descriptions[lang]}
+    </p>
+  </div>
+</NotFoundLayout>

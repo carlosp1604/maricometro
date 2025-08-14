@@ -34,7 +34,7 @@ export default function InputUsername ({ lang }: Props) {
             transform: 'translateZ(0)'
           }}
           className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity
-          duration-300 group-hover:opacity-100"
+          duration-300 group-focus-within:opacity-100"
         />
 
         <form
