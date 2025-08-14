@@ -56,6 +56,7 @@ export default tseslint.config(
           ],
         },
       ],
+      'astro/semi': ['error', 'never'],
       quotes: ['error', 'single'],
       semi: ['error', 'never'],
       indent: ['error', 2],
