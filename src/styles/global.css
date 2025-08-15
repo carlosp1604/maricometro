@@ -35,30 +35,23 @@
     --breakpoint-xl: 1280px;
     --breakpoint-2xl: 1536px;
 
-    /* Z-index */
-    --z-index-app-menu: 1;
-    --z-index-mobile-menu: 2;
-    --z-index-tooltip: 3;
-    --z-index-modal-backdrop: 4;
-    --z-index-menu-dropdown: 5;
+    --color-body: #b9add2; /* lavanda grisáceo medio-oscuro */
+    --color-text: #3c2f4f; /* violeta profundo grisáceo para alto contraste */
+    --color-secondary-text: #5d4f72; /* un poco más claro que el principal */
+    --color-disabled: #9a8faf;
+    --color-hover: #c8bde0; /* un poco más claro que el fondo */
+    --color-surface: #dcd4ec; /* tarjetas y bloques más claros */
+    --color-active: #c2b6dd; /* intermedio para estados activos */
+    --color-border: #9f94b7; /* violeta grisáceo para bordes */
+    --color-input: #f3f0fa; /* fondo claro para inputs */
 
-    /* Base colors */
-    --color-body: #dadada;
-    --color-text: #1a1a1a;
-    --color-secondary-text: #5a5a5a;
-    --color-disabled: #a0a0a0;
-    --color-hover: #eaeaea;
-    --color-surface: #f5f5f5;
-    --color-active: #e0e0e0;
-    --color-border: #cccccc;
-    --color-input: #ffffff;
+    /* Colores de marca adaptados al violeta */
+    --color-brand-primary: #a0b8ff; /* azul lavanda pastel brillante */
+    --color-brand-primary-dark: #6c87d6; /* azul lavanda más profundo */
+    --color-brand-secondary: #dba6ff; /* lila-magenta pastel */
+    --color-brand-accent: #ffa9c0; /* rosa sandía pastel suave */
 
-    --color-brand-primary: #8ecae6;
-    --color-brand-primary-dark: #219ebc;
-    --color-brand-secondary: #ffb3c1;
-    --color-brand-accent: #ffd6a5;
-
-    /* Special rainbow pastel gradient */
+    /* Special rainbow pastel gradient (sin cambios) */
     --gradient-rainbow-pastel: linear-gradient(
         90deg,
         #F9A8D4,
@@ -68,8 +61,18 @@
         #A78BFA
     );
 
+    --rainbow-pastel-emphasis: linear-gradient(
+        90deg,
+        #FF6B6B 0%, #FF6B6B 16.66%,
+        #FFCD5C 16.66%, #FFCD5C 33.33%,
+        #FFF57C 33.33%, #FFF57C 50%,
+        #6EE7B7 50%, #6EE7B7 66.66%,
+        #5ACCF9 66.66%, #5ACCF9 83.33%,
+        #A78BFA 83.33%, #A78BFA 100%
+    );
+
     /* State colors */
-    --color-red: #ffadad;
+    --color-red: #ffb3ba;
     --color-green: #b5ead7;
     --color-yellow: #fff5ba;
 

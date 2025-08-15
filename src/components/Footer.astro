@@ -1,0 +1,130 @@
+---
+const lang: 'es' | 'en' = Astro.props.lang
+
+const footerLinks = [
+  { label: { es: 'Inicio', en: 'Home' }, href: '/' },
+]
+
+const disclaimer = {
+  es: 'Dislaimer',
+  en: 'Dislaimer'
+}
+
+const pageTitle = {
+  es: 'Maricometro',
+  en: 'Pride-o-meter'
+}
+
+const logoAlt = {
+  es: 'Logo de Maricometro',
+  en: 'Pride-o-meter logo'
+}
+
+const disclaimerMessage = {
+  es: 'La temática de esta web es solo una broma y no debe tomarse en serio. El objetivo es sacar unas risas y pasar un buen rato.',
+  en: 'The theme of this website is just a joke and should not be taken seriously. The goal is to get some laughs and have a good time.'
+}
+
+const disclaimerTitle = {
+  es: 'Descargo de responsabilidad',
+  en: 'Disclaimer',
+}
+
+const attTitle = {
+  es: 'El equipo de Maricometro',
+  en: 'Pride-o-meter team'
+}
+---
+
+<footer class="bg-surface text-text px-4 md:px-8 py-4 mt-8 w-full border-t-16 border-brand-secondary ring-brand-accent ring-4">
+  <div class="container flex flex-col md:flex-row items-center justify-between w-full gap-4">
+    <div class="flex items-center gap-2">
+      <img src="/logo.png" alt={logoAlt[lang]} class="h-12 w-auto" loading="lazy" />
+      <span class="font-bold text-lg">{pageTitle[lang]}</span>
+    </div>
+
+    <div class="flex flex-wrap gap-4 md:gap-6 justify-center md:justify-end">
+      {footerLinks.map((link) => (
+        <a href={link.href} class="hover:text-brand-primary transition-colors duration-200">
+          {link.label[lang]}
+        </a>
+      ))}
+      <button
+        id="disclaimerBtn"
+        class="hover:text-brand-primary transition-colors duration-200 hover:cursor-pointer"
+      >
+        {disclaimer[lang]}
+      </button>
+    </div>
+  </div>
+  <div class="mt-4 text-start text-secondary-text/80 text-sm">
+    {lang === 'es' ? (
+      <>Hecho con <span class="text-red-400">❤️</span> y muchas risas por CP</>
+    ) : (
+      <>Made with <span class="text-red-400">❤️</span> and lots of laughs by CP</>
+    )}
+  </div>
+</footer>
+
+<div
+  id="disclaimerModal"
+  class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50
+  transition-opacity duration-300 opacity-0"
+>
+  <div
+    class="bg-surface text-text rounded-2xl shadow-lg max-w-md w-full p-6 relative
+    transform scale-50 transition-transform duration-300 m-5 md:m-0"
+  >
+    <button
+      id="closeModal"
+      class="absolute top-3 right-3 text-secondary-text/80 hover:text-text transition-colors"
+    >
+    ✕
+    </button>
+    <div class="flex flex-col items-center gap-4 text-center">
+      <img src="/logo.png" alt={logoAlt[lang]} class="h-16 w-auto" loading="lazy" />
+      <h2 class="font-bold text-xl">{disclaimerTitle[lang]}</h2>
+      <p>{disclaimerMessage[lang]}</p>
+      <p class="mt-4 italic font-light text-sm">{attTitle[lang]}</p>
+    </div>
+  </div>
+</div>
+
+<script>
+    const modal = document.getElementById('disclaimerModal')
+    const btn = document.getElementById('disclaimerBtn')
+    const closeBtn = document.getElementById('closeModal')
+
+    if (modal && btn && closeBtn) {
+      const openModal = () => {
+        modal.classList.remove('hidden')
+        requestAnimationFrame(() => {
+          modal.classList.remove('opacity-0')
+          modal.classList.add('opacity-100')
+
+          if (modal.firstElementChild) {
+            modal.firstElementChild.classList.remove('scale-95')
+            modal.firstElementChild.classList.add('scale-100')
+          }
+        })
+      }
+
+      const closeModal = () => {
+        modal.classList.remove('opacity-100')
+        modal.classList.add('opacity-0')
+
+        if (modal.firstElementChild) {
+          modal.firstElementChild.classList.remove('scale-100')
+          modal.firstElementChild.classList.add('scale-50')
+        }
+        setTimeout(() => modal.classList.add('hidden'), 300)
+      }
+
+      btn.addEventListener('click', openModal)
+      closeBtn.addEventListener('click', closeModal)
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal()
+      })
+    }
+</script>

@@ -28,15 +28,15 @@ const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
       alt={altTitles[lang]}
       class="max-h-[360px] h-auto md:max-h-[480px] w-auto mx-auto transition-all"
     />
+
     <h1
-      class="text-center tb:w-max text-3xl md:text-5xl font-extrabold text-transparent block mx-auto bg-clip-text mb-4
-      line-clamp-2 "
+      class="text-center tb:w-max text-3xl md:text-5xl font-black block mx-auto bg-clip-text mb-4
+      line-clamp-2"
       style={{
-        background: 'var(--gradient-rainbow-pastel)',
+        background: 'var(--rainbow-pastel-emphasis)',
         WebkitBackgroundClip: 'text',
         color: 'transparent',
-        WebkitTextStroke: '0.5px rgba(0,0,0,0.7)',
-        textShadow: '0 1px 1px rgba(0,0,0,0.3)'
+        WebkitTextStroke: '1px rgba(0,0,0,0.35)',
       }}
     >
       {titles[lang]}

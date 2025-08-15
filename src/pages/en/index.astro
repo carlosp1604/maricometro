@@ -4,6 +4,8 @@ import SiteIntro from '../../components/SiteIntro'
 import Layout from '../../layouts/Layout.astro'
 
 const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
+
+export const prerender = true
 ---
 
 <Layout>

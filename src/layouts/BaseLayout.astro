@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import Footer from '../components/Footer.astro'
 import HomeButton from '../components/HomeButton.astro'
 
 const lang = Astro.url.pathname.startsWith('/es') ? 'es' : 'en'
@@ -17,8 +18,9 @@ const { title } = Astro.props
     <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" />
     <slot name="head"/>
   </head>
-  <body class="min-h-screen w-full container bg-body text-text text-sm md:text-md lg:text-base">
-    <HomeButton lang={lang} client:load/>
+  <body class="bg-body text-text text-sm md:text-md lg:text-base">
+    <HomeButton lang={lang} />
     <slot />
+    <Footer lang={lang} />
   </body>
 </html>

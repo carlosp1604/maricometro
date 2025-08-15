@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import {useState, type FormEvent} from 'react'
 
 type Props = { lang: 'es' | 'en' }
 
@@ -12,6 +12,11 @@ const buttonText = {
   en: 'Calculate'
 }
 
+const invalidFormText = {
+  es: 'Por favor, escribe un nombre antes de calcular',
+  en: 'Please enter a name before calculating'
+}
+
 export default function InputUsername ({ lang }: Props) {
   const [username, setUsername] = useState('')
 
@@ -19,7 +24,21 @@ export default function InputUsername ({ lang }: Props) {
     e.preventDefault()
     const trimmed = username.trim()
     if (trimmed) {
-      window.location.href = `/${lang}/results/${encodeURIComponent(trimmed)}`
+      window.location.href = `/${lang}/results/${encodeURIComponent(trimmed)}/`
+    }
+  }
+
+  const onInvalid = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target
+    if (target instanceof HTMLInputElement) {
+      target.setCustomValidity(invalidFormText[lang])
+    }
+  }
+
+  const onInput = (e: FormEvent<HTMLInputElement>) => {
+    const target = e.target
+    if (target instanceof HTMLInputElement) {
+      target.setCustomValidity('')
     }
   }
 
@@ -34,7 +53,7 @@ export default function InputUsername ({ lang }: Props) {
             transform: 'translateZ(0)'
           }}
           className="pointer-events-none absolute -inset-1 rounded-lg opacity-0 transition-opacity
-          duration-300 group-focus-within:opacity-100"
+          duration-300 group-focus-within:opacity-100 group-hover:opacity-100"
         />
 
         <form
@@ -51,12 +70,14 @@ export default function InputUsername ({ lang }: Props) {
             aria-label={placeholderTitle[lang]}
             className="w-full px-4 py-3 bg-transparent placeholder:text-secondary-text
             outline-none"
+            onInvalid={onInvalid}
+            onInput={onInput}
           />
 
           <button
             type="submit"
-            className="px-4 py-2 md:py-3 bg-brand-primary-dark text-white transition-colors duration-300
-            font-semibold hover:bg-brand-primary cursor-pointer"
+            className="px-4 py-2 md:py-3 bg-brand-primary-dark text-white transition-colors
+            duration-300 font-semibold hover:bg-brand-primary cursor-pointer"
             aria-label={buttonText[lang]}
           >
             {buttonText[lang]}
